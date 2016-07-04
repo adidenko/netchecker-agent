@@ -17,4 +17,28 @@ spec:
           image: 127.0.0.1:31500/netchecker/agent:latest
           env:
           imagePullPolicy: Always
-
+      nodeSelector:
+        netchecker: agent
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: netchecker-agent-hostnet
+spec:
+  replicas: 6
+  selector:
+    app: netchecker-agent-hostnet
+  template:
+    metadata:
+      name: netchecker-agent-hostnet
+      labels:
+        app: netchecker-agent-hostnet
+    spec:
+      hostNetwork: True
+      containers:
+        - name: netchecker-agent
+          image: 127.0.0.1:31500/netchecker/agent:latest
+          env:
+          imagePullPolicy: Always
+      nodeSelector:
+        netchecker: agent
