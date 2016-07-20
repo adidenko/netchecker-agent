@@ -25,6 +25,7 @@ kind: ReplicationController
 metadata:
   name: netchecker-agent-hostnet
 spec:
+  hostNetwork: true
   replicas: 6
   selector:
     app: netchecker-agent-hostnet
